@@ -19,7 +19,6 @@ function Game() {
   const [gameState, setGameState] = React.useState({ended: false})
   
   function runGuess(in_guess) {
-    console.log({in_guess});
 
     const nextGuessList = [...guessList, 
                             {

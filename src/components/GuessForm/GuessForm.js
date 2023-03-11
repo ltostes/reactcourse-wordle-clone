@@ -29,7 +29,9 @@ function GuessForm({ runGuess, enabled }) {
           onChange={
             (event) => {
               const characters = event.target.value.split("");
-              const nextCharacters = characters.length <= 5 ? characters : [...characters.slice(0,4), characters.slice(-1)];
+              // // I initially did this trick to replace the last letter with the user's input, but I think it doesn't make sense anymore
+              // const nextCharacters = characters.length <= 5 ? characters : [...characters.slice(0,4), characters.slice(-1)];
+              const nextCharacters = characters.slice(0,5)
               const nextGuess = nextCharacters.join("").toUpperCase()
               setGuess(nextGuess);
             }
