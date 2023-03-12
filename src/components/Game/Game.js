@@ -8,6 +8,7 @@ import Guess from '../Guess/Guess';
 import GameEndBanner from '../GameEndBanner/GameEndBanner';
 
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants'
+import LetterStatusKeyboard from '../LetterStatusKeyboard/LetterStatusKeyboard';
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -28,7 +29,7 @@ function Game() {
     setGuessList(nextGuessList);
 
     // Checking if game ended
-    if (in_guess == answer) {
+    if (in_guess === answer) {
       setGameState({
         ended: true,
         won: true,
@@ -58,6 +59,7 @@ function Game() {
             }
             </div>
             <GuessForm runGuess={runGuess} enabled={!gameState.ended}/>
+            <LetterStatusKeyboard guessList={guessList} answer={answer}/>
             { gameState.ended  && <GameEndBanner state={gameState}/>}
           </>;
 }
