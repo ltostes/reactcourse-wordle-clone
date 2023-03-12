@@ -11,13 +11,22 @@ import { NUM_OF_GUESSES_ALLOWED } from '../../constants'
 import LetterStatusKeyboard from '../LetterStatusKeyboard/LetterStatusKeyboard';
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+// const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
+
 
 function Game() {
+  const [answer, setAnswer] = React.useState(sample(WORDS))
   const [guessList, setGuessList] = React.useState([])
   const [gameState, setGameState] = React.useState({ended: false})
+
+  console.info({ answer });
+
+  function resetGame() {
+    setAnswer(sample(WORDS));
+    setGuessList([]);
+    setGameState({ended:false});
+  }
   
   function runGuess(in_guess) {
 
@@ -60,7 +69,7 @@ function Game() {
             </div>
             <GuessForm runGuess={runGuess} enabled={!gameState.ended}/>
             <LetterStatusKeyboard guessList={guessList} answer={answer}/>
-            { gameState.ended  && <GameEndBanner state={gameState}/>}
+            { gameState.ended  && <GameEndBanner state={gameState} reset={resetGame}/>}
           </>;
 }
 

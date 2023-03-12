@@ -1,6 +1,6 @@
 import React from "react";
 
-function GameEndBanner({ state }) {
+function GameEndBanner({ state, reset }) {
   return <div className={`${state.won ? 'happy' : 'sad'} banner`}>
             {
               state.won?
@@ -11,6 +11,7 @@ function GameEndBanner({ state }) {
                 :
                 <p>Sorry, the correct answer is <strong>{state.answer}</strong>.</p>
             }
+            <button onClick={reset}><i>Click here to reset the game!</i></button>
         </div>;
 }
 
